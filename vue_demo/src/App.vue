@@ -3,7 +3,12 @@
   <div id="root">
   <div class="todo-container">
     <div class="todo-wrap">
-      <TodoHeader :addTodo="addTodo"/>
+      <!-- <TodoHeader :addTodo="addTodo"/> -->
+      <!-- 直接为该子组件绑定事件监听 -->
+      <!-- <TodoHeader @addTodo="addTodo"/>  -->
+      <!-- 使用ref绑定事件监听-->
+      <!-- <TodoHeader ref="todoHeader"/> -->
+      <TodoHeader/>
       <TodoList :todos="todos" :deleteTodo="deleteTodo"/>
       <TodoFooter :todos="todos" :selectAll="selectAll" :deleteCompletedTodo="deleteCompletedTodo"/>
     </div>
@@ -15,6 +20,7 @@
 import TodoHeader from './components/TodoHeader'
 import TodoList from './components/TodoList'
 import TodoFooter from './components/TodoFooter'
+import PubSub from 'pubsub-js'
 
 export default {
   components: {
@@ -28,6 +34,13 @@ export default {
       // 查询：浏览器，Apllication，Storage，Local Storage
       todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
     }
+  },
+  mounted () { // 执行异步代码
+    // 1、利用refs为todoHeader绑定监听
+    // this.$refs.todoHeader.$on('addTodo', this.addTodo)
+    PubSub.subscribe('addTodo', (msg, todo) => {
+      this.addTodo(todo)
+    })
   },
   methods: {
     addTodo (todo) {
