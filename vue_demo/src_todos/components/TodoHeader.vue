@@ -9,12 +9,12 @@
 
 <script>
 // import x from ''
-import PubSub from 'pubsub-js'
+// import PubSub from 'pubsub-js'
 
 export default {
-  // props: {
-  //   addTodo: Function
-  // },
+  props: {
+    addTodo: Function
+  },
   data () {
     return {
       title: ''
@@ -31,11 +31,11 @@ export default {
       // 2、根据输出生成一个todo对象
       const todo = {title: title, complete: false}
       // 3、添加到todos，直接使用prop
-      // this.addTodo(todo)
+      this.addTodo(todo)
       // 3、添加到todos，触发自定义事件
       // this.$emit('addTodo', todo)
       // 3、发布消息
-      PubSub.publish('addTodo', todo)
+      // PubSub.publish('addTodo', todo)
       // 4、清除输入
       this.title = ''
     }
