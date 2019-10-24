@@ -1,0 +1,23 @@
+<!-- 组件说明 -->
+<template>
+  <div class="container">
+    <Search></Search>
+    <UserMain></UserMain>
+  </div>
+</template>
+
+<script>
+import Search from './components/Search'
+import Main from './components/Main'
+
+export default {
+  components: {
+    Search: Search,
+    UserMain: Main
+  }
+}
+</script>
+
+<style>
+
+</style>
