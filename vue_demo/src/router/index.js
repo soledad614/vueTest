@@ -35,7 +35,7 @@ export default new VueRouter({
           // 嵌套路由
           children: [
             {
-              path: '/home/message/messageDetail:id',
+              path: '/home/message/messageDetail/:id',
               component: MessageDetail
             }
           ]
