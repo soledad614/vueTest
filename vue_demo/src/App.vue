@@ -1,46 +1,70 @@
 <!-- 组件说明 -->
 <template>
-  <div>
-    <p>click {{$store.state.count}} times, count is {{evenOrOdd}}</p>
-
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-    <button @click="incrementIfOdd">increment if odd</button>
-    <button @click="incrementAsync">increment async</button>
+  <div id="root">
+  <div class="todo-container">
+    <div class="todo-wrap">
+      <TodoHeader/>
+      <TodoList/>
+      <TodoFooter/>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
-import {mapState, mapGetters, mapActions} from 'vuex'
+import TodoHeader from './components/TodoHeader'
+import TodoList from './components/TodoList'
+import TodoFooter from './components/TodoFooter'
+
 export default {
-  computed: {
-    ...mapState(['count']), // count()返回值：{count() {return this.$store.state['count']}}
-    // ...mapGetters(['evenOrOdd']) // mapGetters()返回值：{evenOrOdd() {return this.$store.getters['evenOrOdd']}}
-    // 使用对应关系
-    ...mapGetters({evenOrOdd:'evenOrOdd'})
-  },
-  methods: {
-    ...mapActions(['increment', 'decrement', 'incrementIfOdd', 'incrementAsync'])
-    // // 增加
-    // increment () {
-    //   this.$store.dispatch('increment')
-    // },
-    // // 减少
-    // decrement () {
-    //   this.$store.dispatch('decrement')
-    // },
-    // // 如果是奇数才增加
-    // incrementIfOdd () {
-    //   this.$store.dispatch('incrementIfOdd')
-    // },
-    // // 异步增加
-    // incrementAsync () {
-    //   this.$store.dispatch('incrementAsync')
-    // }
+  components: {
+    TodoHeader,
+    TodoList,
+    TodoFooter
   }
 }
 </script>
 
 <style>
+body {
+  background: #fff;
+}
 
+.btn {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #da4f49;
+  border: 1px solid #bd362f;
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #bd362f;
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.todo-container {
+  width: 600px;
+  margin: 0 auto;
+}
+.todo-container .todo-wrap {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
 </style>
