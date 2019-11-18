@@ -2,17 +2,14 @@
 <template>
     <div class="msite">
         <!--首页头部-->
-        <header class="msite_header">
-          <span class="header_search">
-            <i class="iconfont icon-sousuo"></i>
-          </span>
-          <span class="header_title">
+        <HeaderTop title="昌平区北七家宏福科技园(337省道北)">
+          <span class="header_title" slot="left">
             <span class="header_title_text ellipsis">昌平区北七家宏福科技园(337省道北)</span>
           </span>
-          <span class="header_login">
+          <span class="header_login" slot="right">
             <span class="header_login_text">登录|注册</span>
           </span>
-        </header>
+        </HeaderTop>
         <!--首页导航-->
         <nav class="msite_nav">
           <div class="swiper-container">
@@ -313,8 +310,33 @@
 </template>
 
 <script>
-// import x from ''
+import HeaderTop from '../../components/HeaderTop/HeaderTop.vue'
+import Swiper from 'swiper'
+import 'swiper/css/swiper.min.css'
+/* eslint-disable no-new */
 export default {
+  components: {
+    HeaderTop: HeaderTop
+  },
+  mounted () { // 页面初始化后再加载
+    new Swiper('.swiper-container', {
+      // direction: 'vertical', // 垂直切换选项
+      loop: true, // 循环模式选项
+      // 如果需要分页器
+      pagination: {
+        el: '.swiper-pagination'
+      },
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      // 如果需要滚动条
+      scrollbar: {
+        el: '.swiper-scrollbar'
+      }
+    })
+  }
 }
 </script>
 
